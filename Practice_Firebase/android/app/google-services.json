@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "445316109775",
+    "project_id": "practice-firebase-flutte-249ec",
+    "storage_bucket": "practice-firebase-flutte-249ec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445316109775:android:91447ef718e95ef3c92eba",
+        "android_client_info": {
+          "package_name": "com.example.practice_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkngJKWoNG4-q9CWk3YG7mevO8qm2dgJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
