@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 class FetchDataFirebase extends StatefulWidget {
@@ -29,7 +29,7 @@ class _MyWidgetState extends State<FetchDataFirebase> {
                   itemCount: streamSnapshot.data?.docs.length,
                   itemBuilder: (context,index){ // create each items in list
                     final DocumentSnapshot documentSnapshot =
-                        streamSnapshot.data!.docs[index];   // represent for one doc in FireStore
+                    streamSnapshot.data!.docs[index];   // represent for one doc in FireStore
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Material(
@@ -44,7 +44,7 @@ class _MyWidgetState extends State<FetchDataFirebase> {
                       ),
                     );
                   }
-                  );
+              );
             }
             return const Center(
               child: CircularProgressIndicator(),

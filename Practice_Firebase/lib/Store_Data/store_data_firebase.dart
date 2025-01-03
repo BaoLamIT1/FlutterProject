@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 class StoreDataInFirebase extends StatefulWidget {
   const StoreDataInFirebase({super.key});
 
@@ -17,7 +17,7 @@ class _MyWidgetState extends State<StoreDataInFirebase> {
   TextEditingController professionController = TextEditingController();
 
   final CollectionReference myItems =
-  FirebaseFirestore.instance.collection("Store Data"); // connect to FireStore
+  FirebaseFirestore.instance.collection("Store Data");// connect to FireStore
 
   Future<void> storeData() async {
     return showDialog(    //display dialog after click Fob
