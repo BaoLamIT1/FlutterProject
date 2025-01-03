@@ -14,13 +14,14 @@ void main() async {
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
 
-        // Làm cho app không bị log out ra ngoài khi khởi động laị máy, mà tiếp tục đăng nhập
+      // Làm cho app không bị log out ra ngoài khi khởi động laị máy, mà tiếp tục đăng nhập
       // StreamBuilder(
       //     stream: FirebaseAuth.instance.authStateChanges(),
       //     builder: (context,snapshot){
