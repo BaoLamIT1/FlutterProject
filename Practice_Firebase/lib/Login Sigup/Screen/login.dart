@@ -2,8 +2,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_firebase/Login%20Sigup/Screen/sign_up.dart';
+import 'package:practice_firebase/Login%20Sigup/Service/authentication.dart';
 import 'package:practice_firebase/Login%20Sigup/Widget/button.dart';
+import 'package:practice_firebase/Login%20Sigup/Widget/snackbar.dart';
 import 'package:practice_firebase/Login%20Sigup/Widget/text_field.dart';
+
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +19,45 @@ class LoginScreen extends StatefulWidget {
 class _SignupScreenState extends State<LoginScreen>{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  bool isLoading = false ;
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  void logInUsers() async {
+    // set is loading to true.
+    setState(() {
+      isLoading = true;
+    });
+    // signup user using our authmethod
+    String res = await AuthMethod().loginUser(
+        email: emailController.text,
+        password: passwordController.text,
+       );
+    // if string return is success, user has been creaded and navigate to next screen other witse show error.
+    if (res == "success") {
+      setState(() {
+        isLoading = false;
+      });
+      //navigate to the next screen
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      // show error
+      showSnackBar(context, res);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -55,9 +98,7 @@ class _SignupScreenState extends State<LoginScreen>{
                 ),
               ),
             ),
-            MyButtons(onTap: (){
-
-            },
+            MyButtons(onTap: logInUsers,
                 text: "Log In"),
             SizedBox(height: height / 15,),
             // const ForgotPassword(),
@@ -92,4 +133,5 @@ class _SignupScreenState extends State<LoginScreen>{
   }
 
 }
+
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:practice_firebase/Login%20Sigup/Screen/home_screen.dart';
 import 'package:practice_firebase/Login%20Sigup/Screen/login.dart';
+import 'package:practice_firebase/Login%20Sigup/Service/authentication.dart';
 import 'package:practice_firebase/Login%20Sigup/Widget/button.dart';
+import 'package:practice_firebase/Login%20Sigup/Widget/snackbar.dart';
 import 'package:practice_firebase/Login%20Sigup/Widget/text_field.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -14,6 +17,45 @@ class _SignUpScreen extends State<SignUpScreen>{
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
 
+  bool isLoading = false;
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+  }
+
+  //
+  void signupUser() async {
+    // set is loading to true.
+    setState(() {
+      isLoading = true;
+    });
+    // signup user using our authmethod
+    String res = await AuthMethod().signupUser(
+        email: emailController.text,
+        password: passwordController.text,
+        name: nameController.text);
+    // if string return is success, user has been creaded and navigate to next screen other witse show error.
+    if (res == "success") {
+      setState(() {
+        isLoading = false;
+      });
+      //navigate to the next screen
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      // show error
+      showSnackBar(context, res);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -35,7 +77,7 @@ class _SignUpScreen extends State<SignUpScreen>{
                 textInputType: TextInputType.text,
               ),
               TextFieldInpute(
-                  icon: Icons.person,
+                  icon: Icons.email,
                   textEditingController: emailController,
                   hintText: 'Enter your email',
                   textInputType: TextInputType.text
@@ -61,10 +103,8 @@ class _SignUpScreen extends State<SignUpScreen>{
                   ),
                 ),
               ),
-              MyButtons(onTap: (){
-
-              },
-                  text: "Sign up new account"),
+              // for Sign Up new account
+              MyButtons(onTap: signupUser, text: "Sign up new account"),
               SizedBox(height: height / 15,),
               // const ForgotPassword(),
               // MyButtons(onTap: loginUser, text: "Log In"),
