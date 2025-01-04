@@ -55,7 +55,6 @@ class _MyWidgetState extends State<CRUDSearch>{
           });
           _nameController.text ='';
           _definitionController.text ='';
-
           Navigator.pop(context);
         },
       );
