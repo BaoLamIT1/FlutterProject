@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_firebase/Login%20Sigup/ChatApp/chat_page.dart';
@@ -10,7 +11,6 @@ import 'package:practice_firebase/Login%20Sigup/Widget/snackbar.dart';
 import 'package:practice_firebase/Login%20Sigup/Widget/text_field.dart';
 
 import '../Service/google_auth.dart';
-import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -113,13 +113,20 @@ class _LoginScreenState extends State<LoginScreen>{
                 ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey),
                 onPressed: () async {
                   await FirebaseServices().signInWithGoogle();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>  ChatPage(email: emailController.text),
-                    ),
-                  );
+
+                  final user = FirebaseAuth.instance.currentUser;
+                  if (user != null && user.email != null) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChatPage(email: user.email!),
+                      ),
+                    );
+                  } else {
+                    showSnackBar(context, "Google Sign-In failed. Please try again.");
+                  }
                 },
+
                 child: Row(
                   children: [
                     Padding(

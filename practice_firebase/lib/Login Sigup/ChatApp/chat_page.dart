@@ -22,6 +22,21 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.email.isEmpty) {
+      Future.microtask(() {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoginScreen(),
+          ),
+        );
+      });
+      return const SizedBox.shrink();
+    }
+    // Tiếp tục xây dựng giao diện nếu email hợp lệ
+    return _buildChatPage(context);
+  }
+  Widget _buildChatPage(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Chat'),
@@ -101,4 +116,6 @@ class _ChatPageState extends State<ChatPage> {
       ),
     );
   }
+
+
 }
