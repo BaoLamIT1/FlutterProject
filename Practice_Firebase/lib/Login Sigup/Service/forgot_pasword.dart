@@ -1,7 +1,9 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:practice_firebase/Login%20Sigup/Widget/snackbar.dart';
+
+import '../Widget/snackbar.dart';
+
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key });

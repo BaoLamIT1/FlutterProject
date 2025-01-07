@@ -1,10 +1,8 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_firebase/Login%20Sigup/Screen/login.dart';
-import 'package:practice_firebase/Login%20Sigup/Service/google_auth.dart';
-
 import 'package:practice_firebase/Login%20Sigup/Widget/button.dart';
+import '../Service/google_auth.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 

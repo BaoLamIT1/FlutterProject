@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:practice_firebase/Login%20Sigup/Screen/login.dart';
 
 import '../ChatApp/message_screen.dart';
 import '../Screen/home_screen.dart';
+import '../Screen/login.dart';
 
 class ChatPage extends StatefulWidget {
   final String email;
