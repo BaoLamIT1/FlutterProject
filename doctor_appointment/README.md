@@ -1,16 +1,13 @@
-# doctor_appointment
+# Doctor Appointment App UI/UX
 
-A new Flutter project.
+Đây là một project nho nhỏ mà mình làm để cho phần thực tập 3 tín chỉ tại trường.
+Cũng như là làm chuẩn bị cho đồ án tốt nghiệp mà mình cũng sẽ làm về chủ dề này. Đây có thể nói như 
+1 bản demo
 
-## Getting Started
+Về UI thì mình tham khảo qua: [Dribble: Medical App](https://dribbble.com/shots/15850991-Medical-Apps)
 
-This project is a starting point for a Flutter application.
+Cũng như xem video hướng dẫn và học làm. 
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+

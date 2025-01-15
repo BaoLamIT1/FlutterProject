@@ -77,64 +77,42 @@ List<Doctor> doctors = [
   ),
   Doctor(
     doctorId: 6,
-    name: "Sarah Lee",
+    name: "TrungCook",
     specialist: "Neurologists",
     about:about,
     location: "789 Oak St, Los Angeles",
     price: 54,
-    image: "https://static.vecteezy.com/system/resources/previews/028/251/987/non_2x/doctor-3d-icon-illustration-free-png.png",
+    image: "https://scontent.fhan14-5.fna.fbcdn.net/v/t39.30808-1/462751124_1064031131879945_747328634039980935_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Cj9-UIMAdlwQ7kNvgF3_YtP&_nc_oc=Adj-KbHADnWxwq9bEYpp0ZnHzW0SZ_1hJmo58UYs00-bdFzAD-RYCq7ReTm0CrkxZ4Y&_nc_zt=24&_nc_ht=scontent.fhan14-5.fna&_nc_gid=A3p3x05T8WrWEP51iwOGVeT&oh=00_AYAk0juQhSG7Q8PpbIGYfOcStQGUoDN7xScSVfyaH6OO6A&oe=678C013F",
     color: 0xFF11583c,
     reviews: [reviews[0], reviews[2], reviews[4], reviews[7],],
   ),
   Doctor(
     doctorId: 7,
-    name: "Michael Brown",
+    name: " Ngoc Lan Anh Nguyen",
     specialist: "Psychiatry",
     about:about,
     location: "246 Cedar Blvd, Denver",
     price: 76,
     image:
-    "https://static.vecteezy.com/system/resources/previews/028/251/981/non_2x/doctor-3d-icon-illustration-free-png.png",
+    "https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-1/472755374_1650577375812196_5291533646770401883_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_ohc=voKqUAnGlrMQ7kNvgFb551o&_nc_oc=Adg8SgIffNDFsVs_HKDhJqgTQcEiC12ZrZ3E3_nQRkNZWN_crNvdVPvcKxthXADQdPk&_nc_zt=24&_nc_ht=scontent.fhan14-3.fna&_nc_gid=AUG4pyohkV81dT1OP0I5-87&oh=00_AYBm98PqT-FGEgGYbn-6y5Pr_sg4Gil1L8hc3ZZ6Z9PsVw&oe=678C01B1",
     color:  0xFFf9d8b9,
     reviews: [reviews[5], reviews[3], reviews[4], reviews[2], reviews[7]],
   ),
   Doctor(
     doctorId: 8,
-    name: "David Jones",
+    name: "Huu Chung Le",
     specialist: "Cardiologists",
     about:about,
     location: "767 Old Gate Trail",
     price: 57,
-    image: "https://static.vecteezy.com/system/resources/previews/028/213/351/non_2x/doctor-3d-icon-illustration-free-png.png",
+    image: "https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-1/415256134_3720207141637562_477806305794422392_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=EC3YrHfha3wQ7kNvgEbFgGm&_nc_oc=Adg5O_D92HdbFvuqe_azrSk6Qp4Yzg74K0OPbZAk5N200J4SORewVb6EeBEXmseA-b4&_nc_zt=24&_nc_ht=scontent.fhan14-4.fna&_nc_gid=AYTS64ZkG8LpcXYb85R8DZA&oh=00_AYDtQ5Q4CGiRVsh8qCZzImxAUOx14YhatTrWaq_K1R6a5A&oe=678C19E3",
     color:  0xFFffcdcf,
     reviews: [reviews[3], reviews[5],],
-  ),
-  Doctor(
-    doctorId: 9,
-    name: "Robert Davis",
-    specialist: "Orthopedics",
-    about: about,
-    location: "746 Rutledge Center",
-    price: 55,
-    image: "https://static.vecteezy.com/system/resources/previews/028/196/369/non_2x/doctor-3d-icon-illustration-free-png.png",
-    color:  0xFFf9d8b9,
-    reviews: [reviews[1], reviews[5], reviews[7], reviews[0]],
-  ),
-  Doctor(
-    doctorId: 10,
-    name: "Linda Wilson",
-    specialist: "Dermatology",
-    about: about,
-    location: "283 Northview Park",
-    price: 56,
-    image: "https://static.vecteezy.com/system/resources/previews/028/238/992/non_2x/doctor-3d-icon-illustration-free-png.png",
-    color: 0xFFffcdcf,
-    reviews: [reviews[1], reviews[4], reviews[3]],
   ),
 
 ];
 const about =
-    "is an experienced specialist who is constantly working on improving her skills.";
+    "is an experienced specialist who is constantly working on improving his/her skills.";
 
 rate(Doctor doctor) {
   double rate = 0;

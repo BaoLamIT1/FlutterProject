@@ -1,5 +1,6 @@
 import 'package:doctor_appointment/Model/doctor.dart';
 import 'package:doctor_appointment/Model/symptom.dart';
+import 'package:doctor_appointment/View/doctor_detail_screen.dart';
 import 'package:doctor_appointment/View/list_of_doctors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,15 @@ class _HomeScreenState extends State<HomeScreen>{
                 itemCount: doctors.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context)=> DoctorDetailScreen(
+                                doctor: doctors[index],
+                              ),
+                          ),
+                      );
+                    },
                     child: ListOfDoctors(doctor: doctors[index]),
                   );
                 },

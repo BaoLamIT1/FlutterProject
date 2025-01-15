@@ -1,4 +1,5 @@
 import 'package:doctor_appointment/View/home_screen.dart';
+import 'package:doctor_appointment/View/schedule_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class _MainPageState extends State<MainPage>{
   final List pages = [
     const HomeScreen(),
     const Scaffold(),
-    const Scaffold(),
+    const ScheduleScreen(),
     const Scaffold(),
   ];
   @override
@@ -37,7 +38,7 @@ class _MainPageState extends State<MainPage>{
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.message), label: "Message"),
-            BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: "Calendar"),
+            BottomNavigationBarItem(icon: Icon(Icons.calendar_today_outlined), label: "Schedule"),
             BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Setting"),
       ]
       ),
