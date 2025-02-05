@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:practice_firebase/CRUD_Search/cruds_firebase.dart';
 import 'package:practice_firebase/Login%20Sigup/ChatApp/chat_page.dart';
 
 import 'Login Sigup/Screen/login.dart';
@@ -19,23 +20,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final user = FirebaseAuth.instance.currentUser;
-
-            // Kiểm tra nếu user tồn tại và có email hợp lệ
-            if (user != null && user.email != null) {
-              return ChatPage(email: user.email!);
-            } else {
-              return const LoginScreen();
-            }
-          } else {
-            return const LoginScreen();
-          }
-        },
-      ),
+      home: CRUDSearch(),
+      // home: StreamBuilder<User?>(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasData) {
+      //       final user = FirebaseAuth.instance.currentUser;
+      //
+      //       // Kiểm tra nếu user tồn tại và có email hợp lệ
+      //       if (user != null && user.email != null) {
+      //         return ChatPage(email: user.email!);
+      //       } else {
+      //         return const LoginScreen();
+      //       }
+      //     } else {
+      //       return const LoginScreen();
+      //     }
+      //   },
+      // ),
     );
   }
 }
