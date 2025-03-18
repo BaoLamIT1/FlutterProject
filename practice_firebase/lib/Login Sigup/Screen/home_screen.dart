@@ -23,7 +23,6 @@ class HomeScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-
             MyButtons(
                 onTap: () async {
                   await FirebaseServices().googleSignOut();
@@ -34,7 +33,6 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 text: "Log Out"),
-
           ],
         ),
       ),
