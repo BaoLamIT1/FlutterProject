@@ -43,3 +43,21 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+# Firebase config
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# Environment files
+.env
+.env.example
+
+# Build and cache
+.vscode/
+build/
+.gradle/
+pubspec.lock
+.packages
+
+# Signing keys (if any)
+android/app/key.jks
+android/key.properties
