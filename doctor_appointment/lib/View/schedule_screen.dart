@@ -8,11 +8,13 @@ class ScheduleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child:
+    return SafeArea(
+      child:
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(padding: EdgeInsets.symmetric(horizontal: 15),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15),
           child: Text("Schedule", style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),),
         ),
         const SizedBox(height: 20),
