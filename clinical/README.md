@@ -36,7 +36,7 @@ Mã sinh viên: 211241205.
 
 Lớp: CNTT1-K62
 
-Đây là đồ án tốt nghiệp của mình, 1 ứng dụng app mobile phát triển bằng Flutter.
+Đây là đồ án tốt nghiệp của mình, 1 ứng dụng app mobile phát triển bằng Flutter. Src mình chưa thể public ngay được vì vẫn chưa tốt nghiệp nên các bạn xem tạm Vid demo dưới nha !
 
 Link Demo App: https://www.youtube.com/watch?v=gMzhO5pKP-M
 
