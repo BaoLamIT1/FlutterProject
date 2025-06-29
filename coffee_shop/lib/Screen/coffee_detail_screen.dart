@@ -17,7 +17,7 @@ class CoffeeDetailScreen extends StatefulWidget {
 }
 
 class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
-  String selectedIndex = 'M';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,58 +172,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                   color: xprimaryColor,
                 ),
               ),
-              const SizedBox(height: 30),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Size",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  //Choose Size
-                  Row(
-                    children: ['S', '', 'M', '', 'L'].map((e) {
-                      if (e == "") return const SizedBox(width: 20);
-                      bool isSelected = selectedIndex == e;
-                      return Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = e;
-                            });
-                          },
-                          child: Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: isSelected
-                                  ? xprimaryColor.withOpacity(0.1)
-                                  : Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: isSelected ? xprimaryColor : Colors.black12,
-                                width: 1,
-                              ),
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                              e,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: isSelected ? xprimaryColor : Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  )
-                ],
-              ),
+
             ],
           ),
         ],

@@ -14,6 +14,7 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateMixin {
   List<String> tabs = ['Deliver', 'Pick Up'];
+  String selectedIndex = 'S';
   bool isEditingAddress = false;
   final TextEditingController addressController =
   TextEditingController(text: "1008, Lang Street, City, HaNoi");
@@ -32,6 +33,11 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
     addressController.dispose();
     _tabController.dispose();
     super.dispose();
+  }
+  double getUpSizeFee() {
+    if (selectedIndex == 'M') return 1.0;
+    if (selectedIndex == 'L') return 1.5;
+    return 0.0;
   }
 
   @override
@@ -63,7 +69,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
@@ -88,7 +94,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                       .toList(),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -100,7 +106,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   Text(
                     "LamBaoBao",
                     style: TextStyle(
@@ -161,7 +167,6 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20,),
                   const Divider(
                     indent: 15,
                     endIndent: 15,
@@ -270,6 +275,57 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                     ],
                   ),
                   const SizedBox(height: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Size",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                  //Choose Size
+                  Row(
+                    children: ['S', '', 'M', '', 'L'].map((e) {
+                      if (e == "") return const SizedBox(width: 20);
+                      bool isSelected = selectedIndex == e;
+                      return Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = e;
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? xprimaryColor.withOpacity(0.1)
+                                  : Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: isSelected ? xprimaryColor : Colors.black12,
+                                width: 1,
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              e,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: isSelected ? xprimaryColor : Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  const SizedBox(height: 5),
                   const Divider(
                     indent: 15,
                     endIndent: 15,
@@ -277,7 +333,6 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                     color: Color(0xFFF9F2ED),
                   ),
                   const SizedBox(height: 5),
-                  // Place this just before: Text("Payment Summary", ...)
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     decoration: BoxDecoration(
@@ -332,6 +387,28 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                     ],
                   ),
                   const SizedBox(height: 10),
+                  if (getUpSizeFee() > 0)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Up Size",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "+\$${(getUpSizeFee() * quantity).toStringAsFixed(2)}",
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   if (!isPickUp)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -383,7 +460,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        "\$${(widget.item.price * quantity + (isPickUp ? 0 : 2)).toStringAsFixed(2)}",
+                        "\$${(widget.item.price * quantity + (isPickUp ? 0 : 2) + getUpSizeFee()* quantity).toStringAsFixed(2)}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
