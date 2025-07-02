@@ -4,9 +4,8 @@ import 'package:coffee_shop/common_button.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:readmore/readmore.dart';
-
 import '../Model/coffee_model.dart';
-
+import '../Model/cart_manager.dart';
 class CoffeeDetailScreen extends StatefulWidget {
   final CoffeeData coffee;
   final Item item;
@@ -17,6 +16,19 @@ class CoffeeDetailScreen extends StatefulWidget {
 }
 
 class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
+  String selectedSize = 'S';
+  final CartManager _cartManager = CartManager();
+
+  double getSizeUpcharge() {
+    switch (selectedSize) {
+      case 'M':
+        return 1.0;
+      case 'L':
+        return 1.5;
+      default:
+        return 0.0;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +54,46 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Icon(Iconsax.heart),
+              Stack(
+                children: [
+                  IconButton(
+                    icon: const Icon(Iconsax.shopping_cart, size: 30, color: Colors.black),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const CartScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  // Cart badge
+                  if (!_cartManager.isEmpty)
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          color: xprimaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        constraints: const BoxConstraints(
+                          minWidth: 16,
+                          minHeight: 16,
+                        ),
+                        child: Text(
+                          '${_cartManager.totalItemCount}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ],
           ),
           const SizedBox(height: 20,),
@@ -52,7 +103,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadiusGeometry.circular(20),
+              borderRadius: BorderRadius.circular(20),
               child: Image.network(
                 widget.item.picUrl.isNotEmpty
                     ? widget.item.picUrl[0]
@@ -172,7 +223,58 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                   color: xprimaryColor,
                 ),
               ),
-
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Size selection
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Size",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: ['S', '', 'M', '', 'L'].map((e) {
+                  if (e == "") return const SizedBox(width: 20);
+                  bool isSelected = selectedSize == e;
+                  return Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedSize = e;
+                        });
+                      },
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? xprimaryColor.withOpacity(0.1)
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: isSelected ? xprimaryColor : Colors.black12,
+                            width: 1,
+                          ),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          e,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: isSelected ? xprimaryColor : Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
             ],
           ),
         ],
@@ -204,7 +306,7 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "\$${widget.item.price.toStringAsFixed(2)}",
+                    "\$${(widget.item.price + getSizeUpcharge()).toStringAsFixed(2)}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -217,17 +319,32 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
             SizedBox(
               width: 240,
               child: CommonButton(
-                title: "Buy Now",
+                title: "Add to Cart",
                 onTab: () {
+                  // Add item to cart with selected size
+                  _cartManager.addItem(
+                    widget.item,
+                    widget.coffee,
+                    size: selectedSize,
+                  );
+                  // Show confirmation snackbar
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('${widget.item.title} (Size $selectedSize) added to cart!'),
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: xprimaryColor,
+                    ),
+                  );
+
+                  // Navigate to cart
                   Navigator.push(context,
                     MaterialPageRoute(
-                      builder: (_) =>  CartScreen(coffee: widget.coffee, item: widget.item),
+                      builder: (_) => const CartScreen(),
                     ),
                   );
                 },
               ),
             ),
-            
           ],
         ),
       ),
