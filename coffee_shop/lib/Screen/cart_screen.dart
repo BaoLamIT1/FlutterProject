@@ -235,9 +235,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                       endIndent: 15,
                       color: Colors.black12,
                     ),
-                    const SizedBox(height: 10),
                   ],
-
                   // Cart Items List
                   ListView.separated(
                     shrinkWrap: true,
@@ -249,9 +247,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                       return _buildCartItemCard(cartItem);
                     },
                   ),
-
                   const SizedBox(height: 20),
-
                   // Discount Section
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
